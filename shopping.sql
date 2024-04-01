@@ -166,3 +166,14 @@ on r.region_code = c.region_code
 join t_sales s
 on c.customer_id = s.customer_id
 group by region_name;
+
+-- Q8. 제품의 평균 가격보다 높은 가격을 가진 제품의 이름과 가격을 출력하시오
+select product_name, price
+from t_product p
+where price > (select avg(price) from t_product);
+
+-- Q9. 고객별 구매한 총 제품 수를 출력하세요.
+select c.customer_name, count(s.qty)
+from t_customer c join t_sales s
+on c.customer_id = s.customer_id
+group by customer_name;
